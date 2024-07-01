@@ -17,7 +17,7 @@ jobs:
           - uses: cakeinpanic/jira-description-action@v0.3.0
             with:
               github-token: ${{ secrets.GITHUB_TOKEN }}
-              jira-token: '${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}'
+              jira-token: '${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_TOKEN }}'
               jira-base-url: 'https://fredydlemusdev.atlassian.net/'
               fail-when-jira-issue-not-found: 'true'
     task-check:
