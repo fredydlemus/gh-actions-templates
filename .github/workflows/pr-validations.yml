@@ -7,7 +7,7 @@ jobs:
         steps:
           - uses: deepakputhraya/action-pr-title@v1.0.2
             with:
-              regex: '^(Feature|Bug|Hotfix|Refactor|Build|Test|Risk)(\(\w+\))?:\s([a-zA-Z0-9]{1,10}-\d+)\s.+'
+              regex: '/^(Feature|Bug|Hotfix|Refactor|Build|Test|Risk)(\(\w+\))?:\s((([a-zA-Z]{1,10}-\d+)|NO-JIRA))\s.+/'
               prefix_case_sensitive: false 
     validate-jira-issue-key-exist:
         name: Validate Jira Issue Key Exist
