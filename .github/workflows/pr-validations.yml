@@ -14,6 +14,8 @@ jobs:
         if: contains(github.event.pull_request.title, 'NO-JIRA') == false
         runs-on: ubuntu-latest
         steps:
+          - name: Debug
+            run: echo ${{ toJson(github)}}
           - uses: cakeinpanic/jira-description-action@v0.3.0
             with:
               github-token: ${{ secrets.GITHUB_TOKEN }}
