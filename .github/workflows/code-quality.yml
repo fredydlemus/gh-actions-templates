@@ -1,0 +1,23 @@
+name: Code Quality
+on:
+    workflow_call:
+jobs:
+    sonarcloud:
+        name: SonarCloud
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                fetch-depth: 0
+            - name: SonarCloud Scan
+              uses: SonarSource/sonarcloud-github-action@v2
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+              with:
+                args: >
+                  -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
+                  -Dsonar.organization=${{ vars.SONAR_ORG }}
+                  -Dsonar.sources=.
+                  -Dsonar.coverage.exclusions=**/*
+                  -Dsonar.exclusions=.github/**,.vscode/**,build/**,node_modules/**,scripts/**,lib/**
