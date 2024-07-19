@@ -8,7 +8,7 @@ jobs:
             - name: Checkout Repository
               uses: actions/checkout@v2
             - name: Backup repo to s3
-              uses: fredydlemus/s3-backup-action@main
+              uses: fredydlemus/s3-backup@main
               with:
                   target-bucket: ${{vars.BACKUP_BUCKET_NAME}}
                   bucket-region: ${{secrets.AWS_REGION}}
