@@ -7,18 +7,5 @@ jobs:
         steps:
             - name: Checkout Repository
               uses: actions/checkout@v2
-            - name: Archive Repository
-              run: |
-                mkdir -p /tmp/backup
-                timestamp=$(date +%Y%m%d%H%M%S)
-                tar -czf /tmp/backup/${{github.event.repository.name}}_$timestamp.tar.gz .
-            - name: Move Archive to Workspace
-              run: mv /tmp/backup/*.tar.gz .
-            - name: Configure AWS credentials
-              uses: aws-actions/configure-aws-credentials@v2
-              with:
-                role-to-assume: ${{secrets.AWS_ROLE_TO_ASSUME}}
-                aws-region: ${{secrets.AWS_REGION}}
-            - name: Sync Repository to S3
-              run: |
-                aws s3 sync . s3://${{vars.BACKUP_BUCKET_NAME}} --exclude "*" --include "*.tar.gz"
+            - name: Backup repo to s3
+              uses: fredydlemus/s3-backup-action@main
