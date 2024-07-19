@@ -9,3 +9,8 @@ jobs:
               uses: actions/checkout@v2
             - name: Backup repo to s3
               uses: fredydlemus/s3-backup-action@main
+              with:
+                  target-bucket: ${{vars.BACKUP_BUCKET_NAME}}
+                  bucket-region: ${{secrets.AWS_REGION}}
+                  role-arn: ${{secrets.AWS_ROLE_TO_ASSUME}}
+                  
